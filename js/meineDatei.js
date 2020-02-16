@@ -3,8 +3,11 @@
 let aktuelleFrage = 0;
 let MAX_FRAGEN = 0;
 let docTitle = document.title;
-if (docTitle.match("BZF"))
-    MAX_FRAGEN = 260;
+
+if (docTitle.match("BZF")) 
+    MAX_FRAGEN = 261;
+if (docTitle.match("Flugfunk"))
+    MAX_FRAGEN = 125;
 if (docTitle.match("Luftrecht"))
     MAX_FRAGEN = 195;
 if (docTitle.match("Meteorologie"))
@@ -193,6 +196,17 @@ function nurGespeicherte() {
     bootbox.alert(anzeigeText);
     aktuelleFrage = -1; //später erstes Element anzeigen
     modusNurGespeicherteFragen = true;
+    for (let i = 1; i <= MAX_FRAGEN; i++) {
+            //setze alle angekreuzten Felder zurück
+            document.getElementById(i + "a" + "Text").style.backgroundColor = "white";        
+            document.getElementById(i + "b" + "Text").style.backgroundColor = "white";        
+            document.getElementById(i + "c" + "Text").style.backgroundColor = "white";
+            document.getElementById(i + "d" + "Text").style.backgroundColor = "white";
+            document.getElementById(i + "aRadio").checked = false;            
+            document.getElementById(i + "bRadio").checked = false;            
+            document.getElementById(i + "cRadio").checked = false;            
+            document.getElementById(i + "dRadio").checked = false;
+    }
     blaettern(true);
 }
 
@@ -210,4 +224,11 @@ function loescheListe() {
             blaettern(true);
         }
     });
+}
+
+let myBtnOpenPdf = document.getElementById("openPdf");
+myBtnOpenPdf.addEventListener("click", openPdf);
+function openPdf() {
+    //alert ("Hi");
+    window.open("images/NavaufgabeAnlagen.pdf", "Anlage Navigationsaufgabe");
 }
